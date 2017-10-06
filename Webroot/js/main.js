@@ -61,11 +61,11 @@ function chOrder() {
 function nextPage(page) {
     if (page !== 'undefined') ;
     var ordering = $('#order-by').find(':selected').val();
-    var url = '';
+    var url = '?';
     if (ordering) {
-        url = '?orderBy=' + ordering + '&page=' + page;
+        url += 'orderBy=' + ordering + '&page=' + page;
     } else {
-        url = '?page=' + page;
+        url += 'page=' + page;
     }
 
     window.location.href = window.location.origin + window.location.pathname + url;

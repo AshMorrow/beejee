@@ -28,7 +28,7 @@ class TaskController extends Controller
 
     public function taskCreate(){
 
-        $this->view('taskCreate',['title' => ' Список задач']);
+        $this->view('taskCreate',['title' => 'Create task']);
     }
 
     /**

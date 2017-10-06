@@ -25,8 +25,8 @@ abstract class TaskModel
         }
 
         if (isset($_GET['orderBy'])
-            && $_GET['orderBy'] == 'id' || $_GET['orderBy'] == 'email'|| $_GET['orderBy'] == 'status'){
-            $orderBy = "`".str_replace("`","``",$_GET['orderBy'])."`";
+            && $_GET['orderBy'] == 'name' || $_GET['orderBy'] == 'email'|| $_GET['orderBy'] == 'status'){
+            $orderBy = $_GET['orderBy'];
         }
 
         $start = ($curPage - 1) * $perPage;
@@ -50,8 +50,8 @@ abstract class TaskModel
 
     public static function create($data){
         $query = DB::pdo()
-            ->prepare('INSERT INTO tasks(`name`, `email`, `text`, `status`, `create_date`, `update_date`)
-                                 VALUES (:name, :email, :text, 0, NOW(), NOW())');
+            ->prepare('INSERT INTO tasks(`name`, `email`, `text`, `short_text`, `status`, `create_date`, `update_date`)
+                                 VALUES (:name, :email, :text, :short_text, 0, NOW(), NOW())');
         $query->execute($data);
 
         return DB::pdo()->lastInsertId();

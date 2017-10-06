@@ -4,8 +4,8 @@ namespace Lib;
 
 /**
  * Class Security
- * Using for generation password, csrf hash
- * and check it
+ * Is used for generating password, csrf hash
+ * and checking it
  * @package Lib
  */
 abstract class Security

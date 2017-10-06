@@ -6,7 +6,7 @@ try{
     require_once '..' . DIRECTORY_SEPARATOR .'App'.DIRECTORY_SEPARATOR. 'config.php';
 
     spl_autoload_register(function($class){
-        require_once ROOT. str_ireplace('\\', DS, $class).'.php';
+        require_once ROOT. str_replace('\\', DS, $class).'.php';
     });
 
     if(!$_SESSION['token']){

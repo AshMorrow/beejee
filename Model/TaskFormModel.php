@@ -5,6 +5,10 @@ use Lib\Request;
 
 abstract class TaskFormModel
 {
+    /**
+     * Pattern for removing style tag from string
+     * @var string
+     */
     private static $scriptTagRemovePattern = "/((<(\s*)(script)(\s*)(\/*)(\s*)>((.|\n)*?)<(\s*)(\/+)(\s*)(script)(\s*)>)|<(\s*)(\/*)(\s*)(script)(\s*)(\/*)(\s*)>)*/";
 
     public static function createValidate(){
@@ -15,11 +19,16 @@ abstract class TaskFormModel
         if(!$name || !filter_var($email, FILTER_VALIDATE_EMAIL)) return;
 
         $text = trim(preg_replace(self::$scriptTagRemovePattern, '', Request::post('text')));
+        $shortText = strip_tags($text);
+        if(strlen($shortText) > 255){
+            $shortText = substr($shortText, 0, 250). '...';
+        }
 
         $data = [
             'name' => $name,
             'email' => $email,
-            'text' => $text
+            'text' => $text,
+            'short_text' => $shortText
         ];
 
         return $data;
